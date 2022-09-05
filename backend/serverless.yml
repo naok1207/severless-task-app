@@ -1,0 +1,65 @@
+app: serverless-app
+org: naok1207
+service: backend
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  webpack:
+    # webpackConfig: ./webpack.config.js
+    includeModules:
+      packagePath: ./package.json
+      forceExclude:
+        - aws-sdk
+  userpool: ${self:app}-${self:provider.stage}-user-pool
+  table:
+    user: ${self:app}-userTable-${sls:stage}
+    task: ${self:app}-taskTable-${sls:stage}
+
+plugins:
+  - serverless-webpack
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: dev
+  region: ap-northeast-1
+  environment:
+    DYNAMODB_USER_TABLE: ${self:custom.table.user}
+    DYNAMODB_TASK_TABLE: ${self:custom.table.task}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+        - "cognito:*"
+        - "apigateway:*"
+      Resource:
+        - "*"
+
+functions: ${file(./functions.yml)}
+
+resources:
+  - ${file(./resources/cognito.yml)}
+  # - ${file(./resources/authorizer.yml)} # authorizer 使用時に利用方法を確認
+  - ${file(./resources/output.yml)}
+  - ${file(./resources/table.yml)}
+
+package:
+  individually: true
+  exclude:
+    - node_modules/**
+    - resources/**
+    - package-lock.json
+    - package.json
+    - webpack.config.js
+    - yarn.lock
+    - README.md
+    - .git/**
+    - tmp/**
+    - doc.md
+    - deploy.sh

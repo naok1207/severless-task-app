@@ -1,0 +1,67 @@
+# サインアップ
+preSignUp:
+  handler: src/functions/auth/pre-signup.main
+  events:
+    - cognitoUserPool:
+        pool: ${self:custom.userpool} # このやり方がいいのかわからない
+        trigger: PreSignUp # トリガーの名前
+        existing: true # 作成したcognitoUserPoolを利用するようにできる
+
+# 認証後
+postAuthentication:
+  handler: src/functions/auth/post-authentication.main
+  events:
+    - cognitoUserPool:
+        pool: ${self:custom.userpool}
+        trigger: PostAuthentication
+        existing: true
+# 一旦詳細がわからないのでコメントアウト
+# defineAuthChallenge:
+#   handler: src/functions/auth/define-auth-challenge.main
+#   events:
+#     - cognitoUserPool:
+#         pool: ${self:custom.userpool}
+#         trigger: DefineAuthChallenge
+#         existing: true
+
+# createAuthChallenge:
+#   handler: src/functions/auth/create-auth-challenge.main
+#   events:
+#     - cognitoUserPool:
+#         pool: ${self:custom.userpool}
+#         trigger: CreateAuthChallenge
+#         existing: true
+
+# verifyAuthChallengeResponse:
+#   handler: src/functions/auth/verify-auth-challenge-response.main
+#   events:
+#     - cognitoUserPool:
+#         pool: ${self:custom.userpool}
+#         trigger: VerifyAuthChallengeResponse
+#         existing: true
+
+# dynamodb操作サンプル
+createUser:
+  handler: src/functions/sample/createUser.handler
+  events:
+    - http:
+        path: /createUser
+        method: post
+# getUsers:
+#   handler: src/functions/sample/getUsers.handler
+#   events:
+#     - http:
+#         path: /getUsers
+#         method: get
+# hello:
+#   handler: src/functions/hello.handler
+#   events:
+#     -
+importTask:
+  handler: src/functions/sample/importTask.handler
+  events:
+    - http:
+        path: /createTask
+        method: post
+        # cors: true
+        # private: true

@@ -1,0 +1,13 @@
+# frontendで参照する値を出力
+Outputs:
+  UserPoolId:
+    Value:
+      Ref: CognitoUserPool
+    Export:
+      Name: ${self:app}-${self:provider.stage}-user-pool-id
+
+  UserPoolClientId:
+    Value:
+      Ref: CognitoUserPoolClient
+    Export:
+      Name: ${self:app}-${self:provider.stage}-user-pool-client-id

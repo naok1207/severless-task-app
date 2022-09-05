@@ -1,0 +1,21 @@
+DynamoDbTable:
+  Type: "AWS::DynamoDB::Table"
+  Properties:
+    # set Partition Key / Sort Key
+    AttributeDefinitions:
+      - AttributeName: id
+        AttributeType: S
+      - AttributeName: name
+        AttributeType: S
+    # set the type of key
+    KeySchema:
+      - AttributeName: id
+        KeyType: HASH
+      - AttributeName: name
+        KeyType: RANGE
+    # set CapacityUnits
+    ProvisionedThroughput:
+      ReadCapacityUnits: 1
+      WriteCapacityUnits: 1
+    # set table name
+    TableName: lim-DynamoDB

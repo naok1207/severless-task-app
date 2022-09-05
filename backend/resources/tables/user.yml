@@ -1,0 +1,22 @@
+UserTable:
+  Type: AWS::DynamoDB::Table
+  Properties:
+    AttributeDefinitions:
+      - AttributeName: id
+        AttributeType: S
+      - AttributeName: email
+        AttributeType: S
+      # - AttributeName: email_verified
+      #   AttributeType: S
+    BillingMode: PAY_PER_REQUEST
+    KeySchema:
+      - AttributeName: id
+        KeyType: HASH # primary key
+      - AttributeName: email
+        KeyType: RANGE # sort key
+    # GlobalSecondaryIndexes:
+    #   - IndexName: Email-Verified-Indexπ
+    #     KeySchema:
+    #       - AttributeName: email_verified
+    #         KeyType: HASH
+    TableName: ${self:app}-userTable-${sls:stage}-2
