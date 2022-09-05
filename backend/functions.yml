@@ -65,3 +65,10 @@ importTask:
         method: post
         # cors: true
         # private: true
+
+getTask:
+  handler: src/functions/task/getTask.handler
+  events:
+    - http:
+        path: /getTask
+        method: get
