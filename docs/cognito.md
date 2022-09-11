@@ -127,3 +127,17 @@ context:  {
   span: [Function (anonymous)]
 }
 ```
+
+
+### curl sample
+```
+curl -H 'Authorization: eyJraWQiOiJzM2djOWhUYjJcL29URDVvaksrOE9TeVwvRm5lM0NDZm0xUWZOeEVHeVpUUUk9IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiIwODQyZWRlMS0yYWNmLTQ3YmMtODk0ZS00YzYzNzA5MDM3ZTMiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLmFwLW5vcnRoZWFzdC0xLmFtYXpvbmF3cy5jb21cL2FwLW5vcnRoZWFzdC0xX2ZpNmpsaVZZViIsImNvZ25pdG86dXNlcm5hbWUiOiIwODQyZWRlMS0yYWNmLTQ3YmMtODk0ZS00YzYzNzA5MDM3ZTMiLCJvcmlnaW5fanRpIjoiNWIxNjQ1NTMtYTZhYi00NmY2LWFhZDMtMTY1MjJhZWEzZTRmIiwiYXVkIjoiNHY1dTNxbXBwZnI1ZHZmMzdtcW4zcW5jbWEiLCJldmVudF9pZCI6ImUwNGQ5NmRhLTg5OTgtNDUxYi1hOTBmLTg0ZTI0NDZlMzU0NCIsInRva2VuX3VzZSI6ImlkIiwiYXV0aF90aW1lIjoxNjYyNzE3Mjg2LCJleHAiOjE2NjI3MjA4ODYsImlhdCI6MTY2MjcxNzI4NiwianRpIjoiZjhlNWRmODAtY2UyOC00NWUyLTg0NWUtODBhZWUyMWI3Mjc5IiwiZW1haWwiOiJ0ZXN0QGV4YW1wbGUuY29tIn0.fo-80occnxKQhuI0zWD2ursLiH0IZPBvmxAQ3B_tTpdkFB7cql8qECiJxt3HsrQzIliFC-UaAf5o__x_86cH__5eIVAFGqrsZMXABPXeUlgiCCen5tBWeUfzh41S42xgy-qUozj4AjV1edmA1L8ZQYs-mxE5i90yONTiA0HxhMh5Au4gFKSntbTX8q7aw0NfTx94L3R8Sng2s3B05zf1GH5Lz2S4Deqh5V3gcMd1IrYknhUudB4d5NHUCVY97u5aqhx4SjhQ_0qmOsWBTGvgTqRbjqmPGjyyzwiXfd8F5lxsyZc9LNd0yZUq7rtuizOo3jJf3mqEzhje8whSZ6VbAA' https://zo0bofjgm5.execute-api.ap-northeast-1.amazonaws.com/dev/getTask
+```
+
+```
+curl -X POST -H 'X-Amz-Target: AWSCognitoIdentityProviderService.InitiateAuth' -H 'Content-Type: application/x-amz-json-1.1' -d '{ "ClientId" : "6t9r4v57rqmnarol27moa5gppk", "AuthFlow" : "ADMIN_NO_SRP_AUTH", "AuthParameters": { "USERNAME" : "naoki.na17se@gmail.com", "PASSWORD" : "Password1!"} }' https://cognito-idp.ap-northeast-1.amazonaws.com/
+```
+
+```
+curl -X POST -H 'Content-Type: application/x-amz-json-1.1' -d '{ "ClientId" : "6t9r4v57rqmnarol27moa5gppk", "AuthFlow" : "ADMIN_NO_SRP_AUTH", "AuthParameters": { "USERNAME" : "naoki.na17se@gmail.com", "PASSWORD" : "Password1!"} }' https://cognito-idp.ap-northeast-1.amazonaws.com/
+```

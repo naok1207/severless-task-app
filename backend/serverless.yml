@@ -2,6 +2,8 @@ app: serverless-app
 org: naok1207
 service: backend
 
+useDotenv: true
+
 custom:
   stage: ${opt:stage, self:provider.stage}
   webpack:
@@ -45,7 +47,7 @@ functions: ${file(./functions.yml)}
 
 resources:
   - ${file(./resources/cognito.yml)}
-  # - ${file(./resources/authorizer.yml)} # authorizer 使用時に利用方法を確認
+  - ${file(./resources/authorizer.yml)} # authorizer 使用時に利用方法を確認
   - ${file(./resources/output.yml)}
   - ${file(./resources/table.yml)}
 

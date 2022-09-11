@@ -72,3 +72,27 @@ getTask:
     - http:
         path: /getTask
         method: get
+        cors:
+          headers: # 許可するヘッダー
+            - Content-Type
+            - Authorization
+          allowCredentials: true # 認証情報がある場合に必要
+          allowOrigin: "*" # Originの設定
+        authorizer:
+          type: COGNITO_USER_POOLS
+          authorizerId: !Ref ApiGatewayAuthorizer
+addTask:
+  handler: src/functions/task/addTask.handler
+  events:
+    - http:
+        path: /addTask
+        method: post
+        cors:
+          headers:
+            - Content-Type
+            - Authorization
+          allowCredentials: true
+          allowOrigin: "*"
+        authorizer:
+          type: COGNITO_USER_POOLS
+          authorizerId: !Ref ApiGatewayAuthorizer

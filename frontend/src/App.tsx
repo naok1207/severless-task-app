@@ -9,6 +9,8 @@ import Login from "./components/Login";
 import { Account } from "./components/Account";
 import Status from "./components/Status";
 import Setting from "./components/Setting";
+import GetTask from "./components/GetTask";
+import AddTask from "./components/AddTask";
 
 /**
  * Our Web Application
@@ -30,6 +32,8 @@ export default function App() {
         <SignUp />
         <Login />
         <Setting />
+        <GetTask />
+        <AddTask />
       </div>
     </Account>
   );

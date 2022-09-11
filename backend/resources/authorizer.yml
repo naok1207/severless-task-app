@@ -11,3 +11,4 @@ Resources:
       Type: COGNITO_USER_POOLS
       ProviderARNs:
         - { Fn::GetAtt: [CognitoUserPool, Arn] }
+# https://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/http-api-cors.html
