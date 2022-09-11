@@ -30,6 +30,7 @@ const html = ({
       <script id="config-server-side">
         window.__CONFIG__ = ${JSON.stringify(config)};
       </script>
+      <script src="https://cdn.tailwindcss.com"></script>
     </head>
     <body>
       <div id="root">${content}</div>
