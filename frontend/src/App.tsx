@@ -1,17 +1,12 @@
 import "./App.css"
 
 import * as React from "react";
-import {
-  Routes,
-  Route,
-} from "react-router-dom"
+
 
 import useConfig from "./hooks/useConfig";
-import MainPage from "./pages/MainPage";
-import ErrorPage from "./pages/ErrorPage";
 import { Account } from "./contexts/Account";
-import BoardPage from "./pages/BoardPage";
 import { useEffect, useState } from "react";
+import Router from "./config/Router";
 
 /**
  * Our Web Application
@@ -32,13 +27,7 @@ export default function App() {
 
   return (
     <Account>
-      <Routes>
-        <Route path="/">
-          <Route index element={<MainPage />} />
-          <Route path="board" element={<BoardPage />} />
-          <Route path="*" element={<ErrorPage />} />
-        </Route>
-      </Routes>
+      <Router />
     </Account>
   )
 }
