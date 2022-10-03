@@ -3,7 +3,6 @@ import AWS from "aws-sdk";
 export const handler = async (event) => {
   // ユーザの属性はclaimsに入っている
   const user_id = event.requestContext.authorizer.claims.sub;
-  console.log({ user_id });
 
   const scanParams = {
     TableName: process.env.DYNAMODB_TASK_TABLE,

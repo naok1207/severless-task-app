@@ -57,6 +57,13 @@ createUser:
 #   handler: src/functions/hello.handler
 #   events:
 #     -
+# getTasks:
+#   handler: src/functions/sample/getTasks.handler
+#   events:
+#     - http:
+#         path: /getTasks
+#         method: get
+
 importTask:
   handler: src/functions/sample/importTask.handler
   events:
@@ -87,6 +94,51 @@ addTask:
     - http:
         path: /addTask
         method: post
+        cors:
+          headers:
+            - Content-Type
+            - Authorization
+          allowCredentials: true
+          allowOrigin: "*"
+        authorizer:
+          type: COGNITO_USER_POOLS
+          authorizerId: !Ref ApiGatewayAuthorizer
+createTask:
+  handler: src/functions/task/createTask.handler
+  events:
+    - http:
+        path: /createTask
+        method: post
+        cors:
+          headers:
+            - Content-Type
+            - Authorization
+          allowCredentials: true
+          allowOrigin: "*"
+        authorizer:
+          type: COGNITO_USER_POOLS
+          authorizerId: !Ref ApiGatewayAuthorizer
+updateTask:
+  handler: src/functions/task/updateTask.handler
+  events:
+    - http:
+        path: /updateTask
+        method: post
+        cors:
+          headers:
+            - Content-Type
+            - Authorization
+          allowCredentials: true
+          allowOrigin: "*"
+        authorizer:
+          type: COGNITO_USER_POOLS
+          authorizerId: !Ref ApiGatewayAuthorizer
+getTasks:
+  handler: src/functions/task/getTasks.handler
+  events:
+    - http:
+        path: /getTasks
+        method: get
         cors:
           headers:
             - Content-Type

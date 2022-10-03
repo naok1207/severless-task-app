@@ -1,10 +1,13 @@
 import React, { createContext, ReactNode } from 'react';
 import { CognitoUser, AuthenticationDetails, CognitoUserSession, CognitoUserAttribute } from "amazon-cognito-identity-js";
 import Pool from 'src/UserPool';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 type ContextType = {
   authenticate: (Username: string, Password: string) => Promise<CognitoUserSession>;
   getSession: () => Promise<CognitoUserSession>;
+  authToken: string;
   logout: () => void;
 }
 
@@ -15,6 +18,18 @@ type Props = {
 const AccountContext = createContext<ContextType | undefined>(undefined);
 
 const Account = ({ children }: Props) => {
+  const [authToken, setAuthToken] = useState('');
+
+  useEffect(() => {
+    const f = async () => {
+      const session = await getSession();
+      // @ts-ignore
+      const authToken = session.idToken.jwtToken;
+      setAuthToken(authToken)
+    }
+    f();
+  }, []);
+
   const getSession = async () => {
     return await new Promise<unknown>((resolve, reject) => {
       const user = Pool.getCurrentUser();
@@ -79,7 +94,7 @@ const Account = ({ children }: Props) => {
   }
 
   return (
-    <AccountContext.Provider value={{ authenticate, getSession, logout }}>
+    <AccountContext.Provider value={{ authenticate, getSession, authToken, logout }}>
       {children}
     </AccountContext.Provider>
   )

@@ -2,10 +2,14 @@ TaskTable:
   Type: AWS::DynamoDB::Table
   Properties:
     AttributeDefinitions:
+      - AttributeName: pk
+        AttributeType: S
       - AttributeName: user_id
         AttributeType: S
     BillingMode: PAY_PER_REQUEST
     KeySchema:
-      - AttributeName: user_id
+      - AttributeName: pk
         KeyType: HASH
+      - AttributeName: user_id
+        KeyType: RANGE
     TableName: ${custom.table.task}
